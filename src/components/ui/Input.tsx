@@ -24,12 +24,12 @@ const Input = ({ label, error, className, type = "text", rightIcon, onIconClick,
 
     return (
         <div className="w-full">
-            {label && <label className="mb-2 block text-sm font-medium text-gray-700">{label}</label>}
+            {label && <label className="mb-0 block font-medium text-gray-400 text-sm">{label}</label>}
             <div className="relative">
                 <input
                     type={isPasswordType ? (showPassword ? "text" : "password") : type}
                     className={cn(
-                        "h-12 w-full rounded-lg border border-gray-300 px-4 text-base transition-all outline-none",
+                        "h-11 w-full border-b border-gray-300 text-base transition-all outline-none",
                         "placeholder:text-gray-400",
                         "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
                         error && "border-red-500 focus:border-red-500 focus:ring-red-500/20",

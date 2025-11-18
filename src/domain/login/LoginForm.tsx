@@ -1,12 +1,11 @@
 import MyButton from "@/components/form/button/MyButton";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import Input from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import { loginApi, LoginApiError } from "@/lib/api/loginApi";
 import { ApiResponse } from "@/lib/types/api";
 import useLoginInfoStore from "@/store/useLoginInfoStore";
-import ExclamationMark from "@/svg/ExclamationMark";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -80,24 +79,18 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="mt-16 flex flex-col gap-6 px-4 py-10">
+        <div className="mt-10 flex flex-col gap-6 px-4">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2.5">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-12.5">
+                    <div className="flex flex-col gap-0">
                         <FormField
                             control={form.control}
                             name="loginId"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="relative">
                                     <FormControl>
-                                        <Input placeholder="아이디 입력" {...field} />
+                                        <Input label="아이디" placeholder="아이디 입력" {...field} />
                                     </FormControl>
-                                    <FormLabel>
-                                        <div className="flex items-center gap-2.5">
-                                            <ExclamationMark />
-                                            <span className="text-text-gray">영문 또는 숫자</span>
-                                        </div>
-                                    </FormLabel>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -108,30 +101,38 @@ const LoginForm = () => {
                             control={form.control}
                             name="password"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="relative">
                                     <FormControl>
-                                        <Input placeholder="비밀번호 입력" type="password" {...field} />
+                                        <Input label="비밀번호" placeholder="비밀번호 입력" type="password" {...field} />
                                     </FormControl>
-                                    <FormLabel className="text-text-gray">
-                                        <div className="flex items-center gap-2.5">
-                                            <ExclamationMark />
-                                            <span className="text-text-gray">영문,숫자,특수문자 2가지 이상 조합 8자 이상</span>
-                                        </div>
-                                    </FormLabel>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
-                    <div className="flex flex-row items-center gap-2.5">
-                        <Checkbox checked={isAutoLogin} onCheckedChange={handleAutoLoginChange}>
-                            자동 로그인
-                        </Checkbox>
-                        <Label className="text-text-gray">자동 로그인</Label>
+                    <div className="flex flex-col gap-8">
+                        <div className="flex flex-row items-center gap-2.5">
+                            <Checkbox checked={isAutoLogin} onCheckedChange={handleAutoLoginChange}>
+                                자동 로그인
+                            </Checkbox>
+                            <Label className="text-text-gray text-sm">자동 로그인</Label>
+                        </div>
+                        <MyButton title="로그인" isPending={isPending} onClick={() => {}} type="submit" />
                     </div>
-                    <MyButton title="로그인" isPending={isPending} onClick={() => {}} type="submit" />
                 </form>
             </Form>
+            <div className="flex items-center justify-center gap-5">
+                <span className="text-[#666] text-sm font-normal">비밀번호가 기억나지 않나요?</span>
+                <i className="border-r border-[#D1D5DB] block h-2.5" />
+                <button
+                    className="text-sm font-medium text-[#28285F] underline underline-offset-2"
+                    onClick={() => {
+                        navigate("/change-password");
+                    }}
+                >
+                    비밀번호 변경
+                </button>
+            </div>
         </div>
     );
 };

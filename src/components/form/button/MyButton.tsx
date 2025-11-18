@@ -12,7 +12,7 @@ const MyButton = ({ title, isPending, onClick, type, isDisabled = false }: MyBut
     return (
         <Button
             type={type}
-            className={`${isDisabled ? "bg-disabled-gray" : "bg-main-color"} h-12 w-full text-white`}
+            className={`${isDisabled ? "bg-disabled-gray" : "bg-main-color"} h-12 w-full text-white rounded-xl`}
             disabled={isPending || isDisabled}
             onClick={onClick}
         >

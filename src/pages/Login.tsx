@@ -1,10 +1,10 @@
-import BackHeader from "@/components/ui/BackHeader";
 import LoginForm from "@/domain/login/LoginForm";
+import NonBackHeader from "@/components/ui/NonBackHeader.tsx";
 
 const Login = () => {
     return (
         <>
-            <BackHeader title="로그인" />
+            <NonBackHeader title="로그인" />
             <LoginForm />
         </>
     );
