@@ -1,4 +1,4 @@
-docker stop seat-reservation-webview
-docker rm seat-reservation-webview
-docker image rm seat-reservation-webview:latest
+docker stop arkema-webview
+docker rm arkema-webview
+docker image rm arkema-webview:latest
 
